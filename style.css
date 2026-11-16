@@ -262,3 +262,19 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+.gif-showcase {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 28px 0;
+}
+
+.ai-gif {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+  display: block;
+}
+
