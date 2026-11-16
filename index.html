@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Prompt Engine | AI Engineer Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <span class="badge">AI ENGINEER • LLM PROJECT</span>
+        <h1>SQL Prompt Engine</h1>
+        <p>Tradutor de Linguagem Natural para Consultas SQL e JSON Estruturado</p>
+      </div>
+      <a href="https://github.com/SergioTechSide/sql-prompt-engine" target="_blank" class="btn-outline">Ver Código no GitHub</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card schema-box">
+      <h2>📊 Esquema do Banco de Dados (Contexto injetado no Prompt)</h2>
+      <p class="hint">O modelo utiliza esta estrutura relacional para evitar alucinações de colunas:</p>
+      <div class="schema-grid">
+        <div class="schema-item">
+          <strong>clientes</strong>
+          <span>id, nome, cidade, data_cadastro, status</span>
+        </div>
+        <div class="schema-item">
+          <strong>pedidos</strong>
+          <span>id, cliente_id, valor_total, data_pedido, status_entrega</span>
+        </div>
+        <div class="schema-item">
+          <strong>produtos</strong>
+          <span>id, nome_produto, categoria, preco_unitario, estoque</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card input-section">
+      <div class="mode-bar">
+        <label for="apiKey">🔑 Chave API Google Gemini (Opcional — deixe vazio para usar o Modo Demo Instantâneo):</label>
+        <input type="password" id="apiKey" placeholder="Cole sua Gemini API Key aqui se quiser testar perguntas livres ao vivo...">
+      </div>
+
+      <label for="userQuestion"><strong>1. Escolha um cenário pronto ou digite sua pergunta de negócio:</strong></label>
+      <div class="presets">
+        <button type="button" class="preset-btn" data-preset="top_clientes">🏆 Top 5 clientes que mais gastaram</button>
+        <button type="button" class="preset-btn" data-preset="inativos">⚠️ Clientes sem pedidos há 30 dias</button>
+        <button type="button" class="preset-btn" data-preset="estoque">📦 Produtos com estoque crítico (&lt; 10)</button>
+      </div>
+
+      <textarea id="userQuestion" rows="3" placeholder="Ex: Liste os 5 clientes que mais gastaram em pedidos entregues este ano..."></textarea>
+
+      <button id="generateBtn" class="btn-primary">⚡ Gerar Consulta SQL e JSON Estruturado</button>
+    </section>
+
+    <section id="outputSection" class="output-grid hidden">
+      <div class="card">
+        <div class="card-header">
+          <h3>💻 Query SQL Gerada (Validada Read-Only)</h3>
+          <button type="button" id="copySqlBtn" class="btn-small">Copiar SQL</button>
+        </div>
+        <pre><code id="sqlOutput"></code></pre>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>🔗 Saída Estruturada (Payload JSON)</h3>
+          <button type="button" id="copyJsonBtn" class="btn-small">Copiar JSON</button>
+        </div>
+        <pre><code id="jsonOutput"></code></pre>
+      </div>
+
+      <div class="card full-width">
+        <h3>🧠 Prompt Técnico Estruturado Enviado ao LLM</h3>
+        <pre class="prompt-preview"><code id="promptOutput"></code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Desenvolvido por <strong>Sérgio Barros</strong> • Portfólio AI Engineer &amp; Sistemas</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
